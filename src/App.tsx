@@ -5,7 +5,7 @@ function App() {
   const ref = useRef<HTMLButtonElement>();
   return (
     <>
-      <View ref={ref} as="button">
+      <View ref={ref} component="button">
         테스트
       </View>
     </>
