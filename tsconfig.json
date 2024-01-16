@@ -18,8 +18,10 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "jsxImportSource": "@emotion/react", // 이 부분만 추가
   },
-  "include": ["src"],
+  "include": ["src", "emotion.d.ts"],
+  "files": ["emotion.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
