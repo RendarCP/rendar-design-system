@@ -23,6 +23,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.0",
+    "@emotion/serialize": "^1.3.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.13.0",
+    "@emotion/utils": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
