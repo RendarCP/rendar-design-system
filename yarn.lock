@@ -2182,6 +2182,35 @@ regenerator-runtime@^0.14.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz#356ade10263f685dda125100cd862c1db895327f"
   integrity sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==
 
+rendar-design-system@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/rendar-design-system/-/rendar-design-system-0.0.1.tgz#e3bc92d97ab8e89c727df602e125395896e8a6f8"
+  integrity sha512-5403kw0He1SF/TUUMdXbNktwPBelEnWAj3ZwWy4oCbliX+9ZXZcdAhjx/5qtVvMZiFb2iW4tXVBMy1eJWGgLmQ==
+  dependencies:
+    "@emotion/cache" "^11.13.1"
+    "@emotion/react" "^11.13.0"
+    "@emotion/serialize" "^1.3.0"
+    "@emotion/server" "^11.11.0"
+    "@emotion/styled" "^11.13.0"
+    "@emotion/utils" "^1.4.0"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
+rendar-design-system@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/rendar-design-system/-/rendar-design-system-0.0.2.tgz#c87401053265a8cf61ef1100ed166a1f3127c6eb"
+  integrity sha512-IaarAZ/LJoyYs6J+UFIbz7QxW1ceiKaN3RyaKUc8P/jcQgpizhZzhEexubPRX3rMjs7qK9562E94+JOa8JFoBA==
+  dependencies:
+    "@emotion/cache" "^11.13.1"
+    "@emotion/react" "^11.13.0"
+    "@emotion/serialize" "^1.3.0"
+    "@emotion/server" "^11.11.0"
+    "@emotion/styled" "^11.13.0"
+    "@emotion/utils" "^1.4.0"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    rendar-design-system "^0.0.1"
+
 resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
