@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/RendarCP/rendar-design-system"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/index.es.js",
   "types": "dist/index.d.ts",
