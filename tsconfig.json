@@ -25,9 +25,6 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-
-    // "declaration": true,
-    // "allowSyntheticDefaultImports": true
   },
   "include": ["index.ts", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]

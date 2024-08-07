@@ -11,8 +11,8 @@ interface ButtonProps {
   children: ReactNode;
 }
 
-const Button = ({ children, ...props }: ButtonProps) => {
+export const Button = ({ children, ...props }: ButtonProps) => {
   return <ButtonContainer {...props}>{children}</ButtonContainer>;
 };
 
-export default Button;
+// export default Button;
