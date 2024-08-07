@@ -1,5 +1,11 @@
 {
   "name": "rendar-design-system",
+  "description": "rendar 디자인 시스템",
+  "homepage": "https://github.com/RendarCP/rendar-design-system",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RendarCP/rendar-design-system"
+  },
   "version": "0.0.5",
   "type": "module",
   "main": "dist/index.es.js",
@@ -15,6 +21,18 @@
   },
   "files": [
     "/dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "emotion",
+    "ui",
+    "components",
+    "storybook",
+    "vite"
   ],
   "scripts": {
     "dev": "vite",
@@ -46,5 +64,12 @@
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.9.1",
     "vite-tsconfig-paths": "^4.3.2"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Seong Wook Cho",
+      "email": "tjddnr0217@gmail.com",
+      "url": "https://github.com/RendarCP"
+    }
+  ]
 }
