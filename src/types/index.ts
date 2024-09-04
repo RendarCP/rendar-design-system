@@ -1,0 +1,1 @@
+export type { PolymorphicComponentProps, PolymorphicRef } from './Polymorphic'
