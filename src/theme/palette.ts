@@ -1,6 +1,13 @@
-import { alpha } from '@mui/material/styles';
+// import { alpha } from '@mui/material/styles';
+import { addAlpha } from "@/utils";
 
-export type ColorSchema = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error';
+export type ColorSchema =
+  | "primary"
+  | "secondary"
+  | "info"
+  | "success"
+  | "warning"
+  | "error";
 
 function createGradient(color1: string, color2: string) {
   return `linear-gradient(to bottom, ${color1}, ${color2})`;
@@ -22,108 +29,108 @@ interface ChartPaletteOptions {
   red: string[];
 }
 
-declare module '@mui/material/styles/createPalette' {
-  interface TypeBackground {
-    neutral: string;
-  }
-  interface PaletteColor {
-    lighter: string;
-    darker: string;
-  }
-  interface Palette {
-    gradients: GradientsPaletteOptions;
-    chart: ChartPaletteOptions;
-  }
-  interface PaletteOptions {
-    gradients: GradientsPaletteOptions;
-    chart: ChartPaletteOptions;
-  }
-  interface TypeAction {
-    shades: {
-      [p: string]: string;
-    };
-  }
-}
+// declare module '@mui/material/styles/createPalette' {
+//   interface TypeBackground {
+//     neutral: string;
+//   }
+//   interface PaletteColor {
+//     lighter: string;
+//     darker: string;
+//   }
+//   interface Palette {
+//     gradients: GradientsPaletteOptions;
+//     chart: ChartPaletteOptions;
+//   }
+//   interface PaletteOptions {
+//     gradients: GradientsPaletteOptions;
+//     chart: ChartPaletteOptions;
+//   }
+//   interface TypeAction {
+//     shades: {
+//       [p: string]: string;
+//     };
+//   }
+// }
 
-declare module '@mui/material' {
-  interface Color {
-    0: string;
-    500_8: string;
-    500_12: string;
-    500_16: string;
-    500_24: string;
-    500_32: string;
-    500_48: string;
-    500_56: string;
-    500_80: string;
-  }
-}
+// declare module '@mui/material' {
+//   interface Color {
+//     0: string;
+//     500_8: string;
+//     500_12: string;
+//     500_16: string;
+//     500_24: string;
+//     500_32: string;
+//     500_48: string;
+//     500_56: string;
+//     500_80: string;
+//   }
+// }
 
 const PRIMARY = {
-  lighter: '#FAED00',
-  light: '#9FF21C',
-  main: '#02C685',
-  dark: '#068A90',
-  darker: '#0C5B5B',
+  lighter: "#FAED00",
+  light: "#9FF21C",
+  main: "#02C685",
+  dark: "#068A90",
+  darker: "#0C5B5B",
 };
 
 const SECONDARY = {
-  light: '#ba68c8',
-  main: '#9c27b0',
-  dark: '#7b1fa2',
+  light: "#ba68c8",
+  main: "#9c27b0",
+  dark: "#7b1fa2",
 };
 
 const INFO = {
-  lighter: '#D0F2FF',
-  light: '#74CAFF',
-  main: '#1890FF',
-  dark: '#0C53B7',
-  darker: '#04297A',
+  lighter: "#D0F2FF",
+  light: "#74CAFF",
+  main: "#1890FF",
+  dark: "#0C53B7",
+  darker: "#04297A",
 };
 
 const SUCCESS = {
-  lighter: '#E9FCD4',
-  light: '#AAF27F',
-  main: '#54D62C',
-  dark: '#229A16',
-  darker: '#08660D',
+  lighter: "#E9FCD4",
+  light: "#AAF27F",
+  main: "#54D62C",
+  dark: "#229A16",
+  darker: "#08660D",
 };
 
 const WARNING = {
-  lighter: '#FFF7CD',
-  light: '#FFE16A',
-  main: '#FFC107',
-  dark: '#B78103',
-  darker: '#7A4F01',
+  lighter: "#FFF7CD",
+  light: "#FFE16A",
+  main: "#FFC107",
+  dark: "#B78103",
+  darker: "#7A4F01",
 };
 
 const ERROR = {
-  lighter: '#FFE7D9',
-  light: '#FFA48D',
-  main: '#FF4842',
-  dark: '#B72136',
-  darker: '#7A0C2E',
+  lighter: "#FFE7D9",
+  light: "#FFA48D",
+  main: "#FF4842",
+  dark: "#B72136",
+  darker: "#7A0C2E",
 };
 
 const GREY = {
-  0: '#FAFAFA',
-  100: '#F3F3F5',
-  200: '#F4F6F8',
-  300: '#D0D0CE',
-  400: '#BCBCBC',
-  500: '#898D90',
-  600: '#404445',
-  700: '#2E3233',
-  800: '#25292C',
-  900: '#090909',
-  500_8: alpha('#919EAB', 0.08),
-  500_12: alpha('#919EAB', 0.12),
-  500_16: alpha('#919EAB', 0.16),
-  500_24: alpha('#919EAB', 0.24),
-  500_32: alpha('#919EAB', 0.32),
-  500_48: alpha('#919EAB', 0.48),
-  500_56: alpha('#919EAB', 0.56),
-  500_80: alpha('#919EAB', 0.8),
+  0: "#FAFAFA",
+  100: "#F3F3F5",
+  200: "#F4F6F8",
+  300: "#D0D0CE",
+  400: "#BCBCBC",
+  500: "#898D90",
+  600: "#404445",
+  700: "#2E3233",
+  800: "#25292C",
+  900: "#090909",
+  500_8: addAlpha("#919EAB", 0.08),
+  500_12: addAlpha("#919EAB", 0.12),
+  500_16: addAlpha("#919EAB", 0.16),
+  500_24: addAlpha("#919EAB", 0.24),
+  500_32: addAlpha("#919EAB", 0.32),
+  500_48: addAlpha("#919EAB", 0.48),
+  500_56: addAlpha("#919EAB", 0.56),
+  500_80: addAlpha("#919EAB", 0.8),
 };
 
 const GRADIENTS = {
@@ -135,68 +142,68 @@ const GRADIENTS = {
 };
 
 const CHART_COLORS = {
-  violet: ['#826AF9', '#9E86FF', '#D0AEFF', '#F7D2FF'],
-  blue: ['#2D99FF', '#83CFFF', '#A5F3FF', '#CCFAFF'],
-  green: ['#2CD9C5', '#60F1C8', '#A4F7CC', '#C0F2DC'],
-  yellow: ['#FFE700', '#FFEF5A', '#FFF7AE', '#FFF3D6'],
-  red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4'],
+  violet: ["#826AF9", "#9E86FF", "#D0AEFF", "#F7D2FF"],
+  blue: ["#2D99FF", "#83CFFF", "#A5F3FF", "#CCFAFF"],
+  green: ["#2CD9C5", "#60F1C8", "#A4F7CC", "#C0F2DC"],
+  yellow: ["#FFE700", "#FFEF5A", "#FFF7AE", "#FFF3D6"],
+  red: ["#FF6C40", "#FF8F6D", "#FFBD98", "#FFF2D4"],
 };
 
 const COMMON = {
-  common: { black: '#000', white: '#fff' },
+  common: { black: "#000", white: "#fff" },
   primary: {
     ...PRIMARY,
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     shades: {
-      '30p': 'rgba(2, 198, 133, 0.3)',
+      "30p": "rgba(2, 198, 133, 0.3)",
     },
   },
   secondary: {
     ...SECONDARY,
-    contrastText: '#fff',
+    contrastText: "#fff",
     shades: {
-      '30p': 'rgba(156, 39, 176, 0.3)',
+      "30p": "rgba(156, 39, 176, 0.3)",
     },
   },
   info: {
     ...INFO,
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     shades: {
-      '30p': 'rgba(24, 144, 255, 0.3)',
+      "30p": "rgba(24, 144, 255, 0.3)",
     },
   },
   success: {
     ...SUCCESS,
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     shades: {
-      '30p': 'rgba(84, 214, 44, 0.3)',
+      "30p": "rgba(84, 214, 44, 0.3)",
     },
   },
   warning: {
     ...WARNING,
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     shades: {
-      '30p': 'rgba(255, 193, 7, 0.3)',
+      "30p": "rgba(255, 193, 7, 0.3)",
     },
   },
   error: {
     ...ERROR,
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     shades: {
-      '30p': 'rgba(255, 72, 66, 0.3)',
+      "30p": "rgba(255, 72, 66, 0.3)",
     },
   },
   other: {
-    backdropOverlay: 'rgba(34, 34, 36, 0.5)',
-    divider: 'rgba(34, 34, 36, 0.12)',
+    backdropOverlay: "rgba(34, 34, 36, 0.5)",
+    divider: "rgba(34, 34, 36, 0.12)",
   },
   grey: GREY,
   gradients: GRADIENTS,
   chart: CHART_COLORS,
   action: {
     shades: {
-      '30p': 'rgba(34, 34, 36, 0.3)',
-      '4p': 'rgba(34, 34, 36, 0.04)',
+      "30p": "rgba(34, 34, 36, 0.3)",
+      "4p": "rgba(34, 34, 36, 0.04)",
     },
   },
   // divider: GREY[500_24],
@@ -214,16 +221,26 @@ const COMMON = {
 const palette = {
   light: {
     ...COMMON,
-    text: { primary: GREY[800], secondary: 'rgba(34, 34, 36, 0.6)', disabled: 'rgba(34, 34, 36, 0.38)' },
-    background: { paper: '#fff', default: '#fff', neutral: GREY[200] },
-    action: { active: 'rgba(34, 34, 36, 0.54)', ...COMMON.action },
+    text: {
+      primary: GREY[800],
+      secondary: "rgba(34, 34, 36, 0.6)",
+      disabled: "rgba(34, 34, 36, 0.38)",
+    },
+    background: { paper: "#fff", default: "#fff", neutral: GREY[200] },
+    action: { active: "rgba(34, 34, 36, 0.54)", ...COMMON.action },
   },
   dark: {
     ...COMMON,
-    text: { primary: '#fff', secondary: 'rgba(255, 255, 255, 0.7)', disabled: GREY[600] },
+    text: {
+      primary: "#fff",
+      secondary: "rgba(255, 255, 255, 0.7)",
+      disabled: GREY[600],
+    },
     background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
     // action: { active: GREY[500], ...COMMON.action },
   },
 };
+
+console.log("palette", palette);
 
 export default palette;

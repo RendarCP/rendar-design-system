@@ -1,6 +1,6 @@
 import { RdSize } from "../../theme/types/RdSize";
 import breakpoints, { IbreakPoints } from "../../theme/values/breakpoints";
-import { OQ_HEIGHT } from "../../theme/values";
+// import { OQ_HEIGHT } from "../../theme/values";
 
 type TQuery = {
   up: string;

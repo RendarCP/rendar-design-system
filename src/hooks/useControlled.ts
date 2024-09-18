@@ -1,6 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const useControlled = ({ controlled, default: defaultProp, name, state = 'value' }: any) => {
+const useControlled = ({
+  controlled,
+  default: defaultProp,
+  name,
+  state = "value",
+}: any) => {
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = React.useRef(controlled !== undefined);
   const [valueState, setValue] = React.useState(defaultProp);
@@ -9,15 +14,16 @@ const useControlled = ({ controlled, default: defaultProp, name, state = 'value'
     if (isControlled !== (controlled !== undefined)) {
       console.error(
         [
-          `OQUPIE_FRONT: A component is changing the ${
-            isControlled ? '' : 'un'
-          }controlled ${state} state of ${name} to be ${isControlled ? 'un' : ''}controlled.`,
-          'Elements should not switch from uncontrolled to controlled (or vice versa).',
+          `RENDAR_DESIGN_SYSTEM: A component is changing the ${
+            isControlled ? "" : "un"
+          }controlled ${state} state of ${name} to be ${isControlled ? "un" : ""}controlled.`,
+          "Elements should not switch from uncontrolled to controlled (or vice versa).",
           // eslint-disable-next-line no-useless-concat
-          `Decide between using a controlled or uncontrolled ${name} ` + 'element for the lifetime of the component.',
+          `Decide between using a controlled or uncontrolled ${name} ` +
+            "element for the lifetime of the component.",
           "The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.",
-          'More info: https://fb.me/react-controlled-components',
-        ].join('\n'),
+          "More info: https://fb.me/react-controlled-components",
+        ].join("\n")
       );
     }
   }, [state, name, controlled]);
@@ -26,9 +32,9 @@ const useControlled = ({ controlled, default: defaultProp, name, state = 'value'
     if (!isControlled && defaultValue !== defaultProp) {
       console.error(
         [
-          `OQUPIE_FRONT: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
+          `RENDAR_DESIGN_SYSTEM: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
             `To suppress this warning opt to use a controlled ${name}.`,
-        ].join('\n'),
+        ].join("\n")
       );
     }
   }, [JSON.stringify(defaultProp)]);
