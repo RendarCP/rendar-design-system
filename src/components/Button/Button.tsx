@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { RdSize } from "../../theme/core/theme/types/RdSize";
 import { ColorSchema } from "../../theme/palette";
 import { View } from "../View/View";
-import { useOqTheme } from "../../theme/core/RdProvider";
+import { useRdTheme } from "../../theme/core/RdProvider";
 import useStyles, { ButtonVariant } from "./Button.style";
 import { Spinner } from "../Spinner/Spinner";
 import { RD_HEIGHT } from "../../theme/core/theme/values";
@@ -13,6 +13,9 @@ import {
 
 interface ButtonProps {
   // 버튼 사이즈 정의 'small' | 'medium' | 'large'
+  /**
+   * How large should the button be?
+   */
   size?: RdSize;
   // 버튼 컬러 정의 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error'
   color?: ColorSchema;
@@ -67,7 +70,7 @@ export const Button = forwardRef(
     }: TButtonProps<C>,
     ref: PolymorphicRef<C>
   ) => {
-    const theme = useOqTheme();
+    const theme = useRdTheme();
     const color = _color || theme.palette[_color].main;
     const { classes, cx } = useStyles(
       {
@@ -122,4 +125,4 @@ export const Button = forwardRef(
       </View>
     );
   }
-);
+) as ButtonComponent;

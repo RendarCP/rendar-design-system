@@ -26,15 +26,15 @@ const RdThemeContext = createContext<RdThemeContextType>({
   emotionOptions: { key: "rd", prepend: true },
 });
 
-export function useOqTheme() {
+export function useRdTheme() {
   return useContext(RdThemeContext)?.theme || RD_DEFAULT_THEME;
 }
 
-export function useCoThemeStyles() {
+export function useRdThemeStyles() {
   return useContext(RdThemeContext)?.styles || {};
 }
 
-export function useOqEmotionOptions(): EmotionCacheOptions {
+export function useRdEmotionOptions(): EmotionCacheOptions {
   return (
     useContext(RdThemeContext)?.emotionOptions || { key: "rd", prepend: true }
   );

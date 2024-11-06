@@ -1,4 +1,4 @@
-import { useOqTheme, useCoThemeStyles } from "../RdProvider";
+import { useRdTheme, useRdThemeStyles } from "../RdProvider";
 
 import type { CSS, CSSObject } from "./types";
 import { fromEntries } from "./utils/fromEntries";
@@ -32,9 +32,9 @@ export function createStyles<Key extends string = string, Params = unknown>(
   function useStyles(params?: Params, options?: UseStylesOptions<Key>) {
     // console.log('params@@@@@@@@@@@@@@@@@@@@@@@@@', params);
     // console.log('options$$$$$$$$$$$$$$$$$$$$$$', options);
-    const theme = useOqTheme();
+    const theme = useRdTheme();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
-    const themeStyles = useCoThemeStyles()[options?.name!];
+    const themeStyles = useRdThemeStyles()[options?.name!];
 
     const { css, cx } = useCss();
 

@@ -1,5 +1,5 @@
 import createCache, { EmotionCache, Options } from "@emotion/cache";
-import { useOqEmotionOptions } from "../RdProvider";
+import { useRdEmotionOptions } from "../RdProvider";
 import { defaultOqupieEmotionCache } from "./default-cache";
 
 export const { getCache } = (() => {
@@ -17,6 +17,6 @@ export const { getCache } = (() => {
 })();
 
 export function useEmotionCache() {
-  const cache = useOqEmotionOptions();
+  const cache = useRdEmotionOptions();
   return getCache(cache) || defaultOqupieEmotionCache;
 }
