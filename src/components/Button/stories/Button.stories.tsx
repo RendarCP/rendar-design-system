@@ -4,7 +4,7 @@ import { Button } from "../Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "rendar-design-system/button",
+  title: "rendar-design-system/Button",
   component: Button,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
