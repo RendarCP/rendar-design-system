@@ -1,6 +1,20 @@
-# React + TypeScript + Vite
+<h1 align='center'>
+  rendar-design-system
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center"><strong>rendar-design-system is an open-source Design Library System <br/> Made exclusively for React. </p>
+
+## Installation
+
+Install the package in your project directory with:
+
+```shell
+npm install rendar-design-system @emotion/react @emotion/styled
+```
+
+## Example
+
+## Usage
 
 Currently, two official plugins are available:
 
@@ -17,12 +31,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
