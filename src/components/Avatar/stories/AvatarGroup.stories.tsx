@@ -2,6 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AvatarGroup } from "../AvatarGroup";
 import { Avatar } from "../Avatar";
 
+const avatarUrls = [
+  "https://fastly.picsum.photos/id/786/600/400.jpg?hmac=vrVktsOjvWZxfPkgOvYp5fejC9rXMVAjyABIkuYkvso",
+  "https://fastly.picsum.photos/id/574/600/400.jpg?hmac=EQ9zsodnVQYwYosJrIVHnQ5Ekp7F9_I05f-21GwANC4",
+  "https://fastly.picsum.photos/id/119/600/400.jpg?hmac=83QxaIP9GpgV3_Y4_GdVJW76KdowZbCbjakQqiX56CQ",
+  "https://fastly.picsum.photos/id/1074/600/400.jpg?hmac=-mqpWcJSXqmfo8UkPkASvV1o1NXtm6MpwreadzQAu_o",
+  "https://fastly.picsum.photos/id/267/600/400.jpg?hmac=WKOJueOyFV6BQONn8kCm7lc3IOjNjFMPP6NDezAPYe0",
+];
+
 const meta = {
   title: "rendar-design-system/AvatarGroup",
   component: AvatarGroup,
@@ -16,7 +24,6 @@ const meta = {
       description: "총 아바타 수(숨겨진 아바타 포함)",
     },
   },
-  // 기본 args 설정
   args: {
     max: 3,
     total: 5,
@@ -26,51 +33,58 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// render 함수를 사용하여 스토리 정의
+// 기본 아바타 그룹
 export const Default: Story = {
   render: (args) => (
     <AvatarGroup {...args}>
-      <Avatar src="https://fastly.picsum.photos/id/786/600/400.jpg?hmac=vrVktsOjvWZxfPkgOvYp5fejC9rXMVAjyABIkuYkvso" />
-      <Avatar src="https://fastly.picsum.photos/id/574/600/400.jpg?hmac=EQ9zsodnVQYwYosJrIVHnQ5Ekp7F9_I05f-21GwANC4" />
-      <Avatar src="https://fastly.picsum.photos/id/119/600/400.jpg?hmac=83QxaIP9GpgV3_Y4_GdVJW76KdowZbCbjakQqiX56CQ" />
-      <Avatar src="https://fastly.picsum.photos/id/1074/600/400.jpg?hmac=-mqpWcJSXqmfo8UkPkASvV1o1NXtm6MpwreadzQAu_o" />
-      <Avatar src="https://fastly.picsum.photos/id/267/600/400.jpg?hmac=WKOJueOyFV6BQONn8kCm7lc3IOjNjFMPP6NDezAPYe0" />
+      {Array.from({ length: args.total || 5 }, (_, index) => (
+        <Avatar
+          key={index}
+          src={avatarUrls[index % avatarUrls.length]}
+          alt={`User ${index + 1}`}
+        />
+      ))}
     </AvatarGroup>
   ),
 };
 
-// 최대 표시 개수를 2개로 제한한 스토리
+// 최대 표시 개수를 2개로 제한
 export const MaxTwo: Story = {
   render: (args) => (
     <AvatarGroup {...args} max={2}>
-      <Avatar src="https://fastly.picsum.photos/id/786/600/400.jpg?hmac=vrVktsOjvWZxfPkgOvYp5fejC9rXMVAjyABIkuYkvso" />
-      <Avatar src="https://fastly.picsum.photos/id/574/600/400.jpg?hmac=EQ9zsodnVQYwYosJrIVHnQ5Ekp7F9_I05f-21GwANC4" />
-      <Avatar src="https://fastly.picsum.photos/id/119/600/400.jpg?hmac=83QxaIP9GpgV3_Y4_GdVJW76KdowZbCbjakQqiX56CQ" />
-      <Avatar src="https://fastly.picsum.photos/id/1074/600/400.jpg?hmac=-mqpWcJSXqmfo8UkPkASvV1o1NXtm6MpwreadzQAu_o" />
+      {Array.from({ length: args.total || 5 }, (_, index) => (
+        <Avatar
+          key={index}
+          src={avatarUrls[index % avatarUrls.length]}
+          alt={`User ${index + 1}`}
+        />
+      ))}
     </AvatarGroup>
   ),
 };
 
-// 총 개수를 지정한 스토리
+// 총 개수 표시
 export const WithTotal: Story = {
   render: (args) => (
     <AvatarGroup {...args} total={10}>
-      <Avatar src="https://fastly.picsum.photos/id/786/600/400.jpg?hmac=vrVktsOjvWZxfPkgOvYp5fejC9rXMVAjyABIkuYkvso" />
-      <Avatar src="https://fastly.picsum.photos/id/574/600/400.jpg?hmac=EQ9zsodnVQYwYosJrIVHnQ5Ekp7F9_I05f-21GwANC4" />
-      <Avatar src="https://fastly.picsum.photos/id/119/600/400.jpg?hmac=83QxaIP9GpgV3_Y4_GdVJW76KdowZbCbjakQqiX56CQ" />
-      <Avatar src="https://fastly.picsum.photos/id/1074/600/400.jpg?hmac=-mqpWcJSXqmfo8UkPkASvV1o1NXtm6MpwreadzQAu_o" />
+      {Array.from({ length: args.total || 10 }, (_, index) => (
+        <Avatar
+          key={index}
+          src={avatarUrls[index % avatarUrls.length]}
+          alt={`User ${index + 1}`}
+        />
+      ))}
     </AvatarGroup>
   ),
 };
 
-// 이니셜을 사용한 스토리
+// 이니셜 사용
 export const WithInitials: Story = {
   render: (args) => (
     <AvatarGroup {...args}>
-      <Avatar>JD</Avatar>
-      <Avatar>AB</Avatar>
-      <Avatar>YZ</Avatar>
-      <Avatar>WX</Avatar>
+      {Array.from({ length: args.total || 5 }, (_, index) => (
+        <Avatar key={index}>{`U${index + 1}`}</Avatar>
+      ))}
     </AvatarGroup>
   ),
 };
