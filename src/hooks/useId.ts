@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 let globalId = 0;
 export const useId = (idOverride?: string): string | undefined => {
@@ -8,7 +8,7 @@ export const useId = (idOverride?: string): string | undefined => {
   useEffect(() => {
     if (defaultId == null) {
       globalId += 1;
-      setDefaultId(`co-${globalId}`);
+      setDefaultId(`rd-${globalId}`);
     }
   }, [defaultId]);
 
