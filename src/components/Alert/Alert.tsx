@@ -1,4 +1,4 @@
-import React, { forwardRef, ElementType } from "react";
+import React, { forwardRef, ElementType, ReactNode } from "react";
 // import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 // import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
 // import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
@@ -19,7 +19,22 @@ interface AlertProps {
   onClose?: () => void;
 }
 
-const IconWrapper = ({ children, size = 20, className = "" }) => (
+interface IIconProps {
+  size?: number;
+  className?: string;
+}
+
+interface IconWrapperProps {
+  children: ReactNode;
+  size?: number;
+  className?: string;
+}
+
+const IconWrapper = ({
+  children,
+  size = 20,
+  className = "",
+}: IconWrapperProps) => (
   <svg
     width={size}
     height={size}
@@ -36,14 +51,14 @@ const IconWrapper = ({ children, size = 20, className = "" }) => (
 );
 
 // 기본 경고 아이콘 (느낌표)
-export const AlertCircleIcon = ({ size, className }) => (
+export const AlertCircleIcon = ({ size, className }: IIconProps) => (
   <IconWrapper size={size} className={className}>
     <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
   </IconWrapper>
 );
 
 // 삼각형 경고 아이콘
-export const AlertTriangleIcon = ({ size, className }) => (
+export const AlertTriangleIcon = ({ size, className }: IIconProps) => (
   <IconWrapper size={size} className={className}>
     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
     <line x1="12" y1="9" x2="12" y2="13" />
@@ -52,7 +67,7 @@ export const AlertTriangleIcon = ({ size, className }) => (
 );
 
 // 정보 아이콘
-export const InfoIcon = ({ size, className }) => (
+export const InfoIcon = ({ size, className }: IIconProps) => (
   <IconWrapper size={size} className={className}>
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="16" x2="12" y2="12" />
@@ -61,7 +76,7 @@ export const InfoIcon = ({ size, className }) => (
 );
 
 // 에러 X 아이콘
-export const ErrorIcon = ({ size, className }) => (
+export const ErrorIcon = ({ size, className }: IIconProps) => (
   <IconWrapper size={size} className={className}>
     <circle cx="12" cy="12" r="10" />
     <line x1="15" y1="9" x2="9" y2="15" />
@@ -70,14 +85,14 @@ export const ErrorIcon = ({ size, className }) => (
 );
 
 // 성공 체크 아이콘
-export const SuccessIcon = ({ size, className }) => (
+export const SuccessIcon = ({ size, className }: IIconProps) => (
   <IconWrapper size={size} className={className}>
     <circle cx="12" cy="12" r="10" />
     <path d="M9 12l2 2 4-4" />
   </IconWrapper>
 );
 
-export const CloseIcon = ({ size, className }) => (
+export const CloseIcon = ({ size, className }: IIconProps) => (
   <IconWrapper size={size} className={className}>
     <line x1="18" y1="6" x2="6" y2="18" />
     <line x1="6" y1="6" x2="18" y2="18" />
