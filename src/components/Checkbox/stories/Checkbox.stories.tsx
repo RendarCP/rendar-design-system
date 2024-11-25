@@ -30,6 +30,12 @@ const meta: Meta<typeof Checkbox> = {
       description: "체크박스의 라벨",
     },
   },
+  args: {
+    color: "primary",
+    checked: false,
+    disabled: false,
+    label: "test",
+  },
 };
 
 export default meta;
@@ -37,7 +43,10 @@ type Story = StoryObj<typeof Checkbox>;
 
 // 기본 체크박스
 export const Default: Story = {
-  render: () => <Checkbox />,
+  args: {
+    label: "test",
+    checked: true,
+  },
 };
 
 // 상태 제어 체크박스
