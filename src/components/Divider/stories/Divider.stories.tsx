@@ -44,6 +44,13 @@ const meta: Meta<typeof Divider> = {
 export default meta;
 type Story = StoryObj<typeof Divider>;
 
+export const Default: Story = {
+  args: {
+    children: "테스트",
+    labelPosition: "center",
+  },
+};
+
 export const Horizontal: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
