@@ -38,6 +38,7 @@ export default createStyles(
         backgroundColor: color
           ? theme.palette[color].main
           : theme.palette.grey[500],
+        textTransform: "uppercase",
       },
       children: {},
       image: {

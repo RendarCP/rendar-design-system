@@ -88,6 +88,9 @@ export const Avatar = forwardRef(
       if (src && alt) {
         return alt[0];
       }
+      if (typeof children === "string") {
+        return children[0];
+      }
       return children;
     };
 
