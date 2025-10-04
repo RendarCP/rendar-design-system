@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
+<h1 align='center'>
+  rendar-design-system
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center"><strong>rendar-design-system is an open-source Design Library System <br/> Made exclusively for React. </p>
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install the package in your project directory with:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```shell
+npm install rendar-design-system @emotion/react @emotion/styled
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Example
+
+[You can check the example here.](https://673a04c28614bf804981780a-vdzvawjyjz.chromatic.com/?path=/docs/rendar-design-system-accordion--docs).
+
+## Usage
+
+```tsx
+import { Button } from "rendar-design-system";
+
+
+// redering Code
+<Button>Test</Button>
+
+// choose your options
+<Button variant="contained">Test</Button>
+```
