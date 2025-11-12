@@ -1,0 +1,579 @@
+---
+alwaysApply: true
+---
+
+# Rendar Design System - Monorepo 구조 변경 가이드
+
+## 📌 프로젝트 개요
+
+Rendar Design System을 모노레포 구조로 전환하여 Emotion 기반과 Tailwind 기반 두 가지 버전의 디자인 시스템을 제공합니다.
+
+## 🎯 목표
+
+- 단일 레포지토리에서 여러 패키지 관리
+- Emotion 기반 디자인 시스템 유지 (`@rendar/emotion`)
+- Tailwind 기반 디자인 시스템 신규 구축 (`@rendar/tailwind`)
+- 공통 로직 및 타입 공유 (`@rendar/core`)
+- 일관된 컴포넌트 API 제공
+
+## 📁 디렉토리 구조
+
+```
+rendar-design-system/
+├── packages/
+│   ├── core/                    # 공통 코드 (타입, 유틸리티, 훅)
+│   │   ├── src/
+│   │   │   ├── types/          # 공통 타입 정의
+│   │   │   ├── hooks/          # 공통 React 훅
+│   │   │   ├── utils/          # 유틸리티 함수
+│   │   │   └── constants/      # 상수
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── vite.config.ts
+│   │
+│   ├── emotion/                 # Emotion 기반 디자인 시스템
+│   │   ├── src/
+│   │   │   ├── components/     # 모든 UI 컴포넌트
+│   │   │   ├── theme/          # 테마 설정
+│   │   │   └── index.ts        # 메인 export
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │   └── .storybook/         # Storybook 설정
+│   │
+│   └── tailwind/                # Tailwind 기반 디자인 시스템
+│       ├── src/
+│       │   ├── components/     # 모든 UI 컴포넌트
+│       │   ├── styles/         # Tailwind 설정 및 유틸리티
+│       │   └── index.ts        # 메인 export
+│       ├── package.json
+│       ├── tsconfig.json
+│       ├── vite.config.ts
+│       ├── tailwind.config.js
+│       └── .storybook/         # Storybook 설정
+│
+├── apps/                        # 예제 앱 (선택사항)
+│   ├── emotion-demo/
+│   └── tailwind-demo/
+│
+├── .changeset/                  # 버전 관리
+├── package.json                 # Root workspace 설정
+├── pnpm-workspace.yaml         # pnpm workspace 설정
+├── turbo.json                   # Turborepo 설정
+├── tsconfig.json                # Root TypeScript 설정
+└── product.md                   # 이 문서
+```
+
+## 🛠 기술 스택
+
+### 패키지 매니저
+
+- **pnpm**: 빠른 속도, 효율적인 디스크 사용, 엄격한 의존성 관리
+
+### 빌드 도구
+
+- **Turborepo**: 병렬 빌드, 캐싱, 의존성 그래프 관리
+- **Vite**: 각 패키지의 번들링
+- **TypeScript**: 타입 안정성
+
+### 스타일링
+
+- **Emotion**: @emotion/react, @emotion/styled
+- **Tailwind CSS**: tailwindcss, tailwind-merge, clsx
+
+### 개발 도구
+
+- **Storybook**: 컴포넌트 문서화 및 테스트
+- **Changesets**: 버전 관리 및 체인지로그
+- **ESLint**: 코드 품질
+- **Prettier**: 코드 포맷팅
+
+## 📦 패키지 구성
+
+### @rendar/core
+
+**목적**: 공통 로직 및 타입 정의
+
+**포함 내용**:
+
+- TypeScript 타입 정의 (OqComponentProps, Polymorphic 등)
+- React 훅 (useToggle, useControlled, useFocusTrap 등)
+- 유틸리티 함수 (clamp, addAlpha, toRgba 등)
+- 상수 (breakpoints, 공통 설정 등)
+
+**의존성**:
+
+```json
+{
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
+```
+
+### @rendar/emotion
+
+**목적**: Emotion 기반 디자인 시스템
+
+**포함 내용**:
+
+- 모든 UI 컴포넌트 (Button, Input, Modal 등)
+- Emotion 스타일 컴포넌트
+- 테마 시스템 (ColorSchemeProvider, RdProvider)
+- Storybook 문서
+
+**의존성**:
+
+```json
+{
+  "dependencies": {
+    "@rendar/core": "workspace:*",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@emotion/cache": "^11.13.1",
+    "@emotion/serialize": "^1.3.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/utils": "^1.4.0",
+    "clsx": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
+```
+
+### @rendar/tailwind
+
+**목적**: Tailwind CSS 기반 디자인 시스템
+
+**포함 내용**:
+
+- 모든 UI 컴포넌트 (Button, Input, Modal 등)
+- Tailwind 클래스 기반 스타일링
+- 테마 설정 (tailwind.config.js)
+- Storybook 문서
+
+**의존성**:
+
+```json
+{
+  "dependencies": {
+    "@rendar/core": "workspace:*",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.0.0",
+    "tailwind-variants": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tailwindcss": "^3.0.0"
+  }
+}
+```
+
+## 🔧 개발 가이드라인
+
+### 컴포넌트 API 일관성
+
+두 패키지의 컴포넌트는 **동일한 Props 인터페이스**를 사용해야 합니다.
+
+```typescript
+// @rendar/core에서 정의
+export interface ButtonProps {
+  variant?: "primary" | "secondary" | "outlined";
+  size?: "small" | "medium" | "large";
+  disabled?: boolean;
+  fullWidth?: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+// @rendar/emotion에서 사용
+import { ButtonProps } from "@rendar/core";
+export const Button: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
+  // Emotion 스타일링
+};
+
+// @rendar/tailwind에서 사용
+import { ButtonProps } from "@rendar/core";
+export const Button: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
+  // Tailwind 클래스 적용
+};
+```
+
+### 스타일링 전략
+
+#### Emotion 패키지
+
+```typescript
+import styled from "@emotion/styled";
+
+const StyledButton = styled.button<{ variant: string }>`
+  padding: ${({ theme }) => theme.spacing(2)};
+  background-color: ${({ variant, theme }) =>
+    variant === "primary" ? theme.palette.primary.main : "transparent"};
+  border-radius: ${({ theme }) => theme.shape.borderRadius}px;
+`;
+```
+
+#### Tailwind 패키지
+
+```typescript
+import { tv } from 'tailwind-variants';
+import { cn } from '@rendar/core';
+
+const buttonVariants = tv({
+  base: 'px-4 py-2 rounded-lg font-medium transition-colors',
+  variants: {
+    variant: {
+      primary: 'bg-primary-500 text-white hover:bg-primary-600',
+      secondary: 'bg-secondary-500 text-white hover:bg-secondary-600',
+      outlined: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50',
+    },
+    size: {
+      small: 'text-sm px-3 py-1.5',
+      medium: 'text-base px-4 py-2',
+      large: 'text-lg px-6 py-3',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'medium',
+  },
+});
+
+export const Button: React.FC<ButtonProps> = ({
+  variant,
+  size,
+  className,
+  ...props
+}) => {
+  return (
+    <button
+      className={cn(buttonVariants({ variant, size }), className)}
+      {...props}
+    />
+  );
+};
+```
+
+### 공통 훅 사용
+
+```typescript
+// @rendar/core에서 제공하는 훅 사용
+import { useToggle, useControlled, useFocusTrap } from "@rendar/core";
+
+// 두 패키지 모두 동일하게 사용
+export const Modal: React.FC<ModalProps> = ({ open, onClose }) => {
+  const [isOpen, toggle] = useToggle(open);
+  const focusTrapRef = useFocusTrap(isOpen);
+
+  // 스타일링만 다르게 적용
+};
+```
+
+## 🚀 빌드 및 배포
+
+### 빌드 스크립트
+
+```json
+// Root package.json
+{
+  "scripts": {
+    "build": "turbo run build",
+    "build:core": "turbo run build --filter=@rendar/core",
+    "build:emotion": "turbo run build --filter=@rendar/emotion",
+    "build:tailwind": "turbo run build --filter=@rendar/tailwind",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "storybook:emotion": "turbo run storybook --filter=@rendar/emotion",
+    "storybook:tailwind": "turbo run storybook --filter=@rendar/tailwind",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "turbo run build && changeset publish"
+  }
+}
+```
+
+### Turborepo 설정
+
+```json
+// turbo.json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "storybook": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+### 버전 관리 (Changesets)
+
+```bash
+# 변경사항 기록
+pnpm changeset
+
+# 버전 업데이트
+pnpm version
+
+# 배포
+pnpm release
+```
+
+## 📝 마이그레이션 체크리스트
+
+### Phase 1: 모노레포 초기 설정
+
+- [ ] pnpm 설치 (`npm install -g pnpm`)
+- [ ] Root package.json 생성 및 workspace 설정
+- [ ] pnpm-workspace.yaml 생성
+- [ ] turbo.json 생성
+- [ ] packages/ 디렉토리 생성
+
+### Phase 2: @rendar/core 패키지 생성
+
+- [ ] packages/core/ 디렉토리 생성
+- [ ] 공통 타입 이동 (types/)
+- [ ] 공통 훅 이동 (hooks/)
+- [ ] 공통 유틸리티 이동 (utils/)
+- [ ] 공통 상수 이동 (constants/)
+- [ ] package.json 설정
+- [ ] tsconfig.json 설정
+- [ ] vite.config.ts 설정
+- [ ] 빌드 테스트
+
+### Phase 3: @rendar/emotion 패키지 생성
+
+- [ ] packages/emotion/ 디렉토리 생성
+- [ ] 현재 src/components/ 이동
+- [ ] 현재 src/theme/ 이동
+- [ ] 현재 src/contexts/ 이동
+- [ ] package.json 설정 (@rendar/core 의존성 추가)
+- [ ] tsconfig.json 설정
+- [ ] vite.config.ts 설정
+- [ ] Storybook 설정 이동
+- [ ] 빌드 테스트
+- [ ] Storybook 실행 테스트
+
+### Phase 4: @rendar/tailwind 패키지 생성
+
+- [ ] packages/tailwind/ 디렉토리 생성
+- [ ] tailwind.config.js 생성
+- [ ] postcss.config.js 생성
+- [ ] 컴포넌트 마이그레이션 시작
+  - [ ] Button
+  - [ ] Input
+  - [ ] Checkbox
+  - [ ] Radio
+  - [ ] Select
+  - [ ] Modal/Dialog
+  - [ ] Drawer
+  - [ ] Accordion
+  - [ ] Alert
+  - [ ] Avatar
+  - [ ] Badge
+  - [ ] Breadcrumbs
+  - [ ] Card
+  - [ ] Chip
+  - [ ] Divider
+  - [ ] List
+  - [ ] Menu
+  - [ ] Spinner
+  - [ ] Tab
+- [ ] 테마 시스템 구축
+- [ ] package.json 설정
+- [ ] tsconfig.json 설정
+- [ ] vite.config.ts 설정
+- [ ] Storybook 설정
+- [ ] 빌드 테스트
+- [ ] Storybook 실행 테스트
+
+### Phase 5: 문서화 및 배포
+
+- [ ] README.md 업데이트
+- [ ] 각 패키지별 README.md 작성
+- [ ] Changesets 설정
+- [ ] GitHub Actions 설정 (CI/CD)
+- [ ] NPM 배포 설정
+- [ ] 버전 1.0.0 릴리즈
+
+## 🎨 디자인 토큰 공유
+
+두 패키지는 동일한 디자인 토큰을 사용해야 합니다.
+
+```typescript
+// @rendar/core/src/theme/tokens.ts
+export const tokens = {
+  colors: {
+    primary: {
+      50: "#f0f9ff",
+      100: "#e0f2fe",
+      // ...
+      900: "#0c4a6e",
+    },
+    // ...
+  },
+  spacing: {
+    0: "0",
+    1: "0.25rem",
+    2: "0.5rem",
+    // ...
+  },
+  borderRadius: {
+    none: "0",
+    sm: "0.125rem",
+    md: "0.375rem",
+    lg: "0.5rem",
+    // ...
+  },
+  // ...
+};
+
+// @rendar/emotion에서 사용
+const theme = {
+  palette: {
+    primary: {
+      main: tokens.colors.primary[500],
+      // ...
+    },
+  },
+  spacing: (factor: number) => `${factor * 0.25}rem`,
+  // ...
+};
+
+// @rendar/tailwind/tailwind.config.js에서 사용
+module.exports = {
+  theme: {
+    extend: {
+      colors: tokens.colors,
+      spacing: tokens.spacing,
+      borderRadius: tokens.borderRadius,
+    },
+  },
+};
+```
+
+## 🧪 테스트 전략
+
+```typescript
+// 각 패키지는 동일한 테스트를 통과해야 함
+describe("Button", () => {
+  it("renders correctly", () => {
+    // @rendar/emotion과 @rendar/tailwind 모두 동일한 테스트
+  });
+
+  it("handles click events", () => {
+    // 동일한 동작 보장
+  });
+
+  it("supports all variants", () => {
+    // 동일한 variant 지원
+  });
+});
+```
+
+## 📚 사용 예시
+
+### Emotion 버전 사용
+
+```typescript
+import { Button, Input, Modal } from '@rendar/emotion';
+import { RdProvider } from '@rendar/emotion';
+
+function App() {
+  return (
+    <RdProvider>
+      <Button variant="primary">Click me</Button>
+    </RdProvider>
+  );
+}
+```
+
+### Tailwind 버전 사용
+
+```typescript
+import { Button, Input, Modal } from '@rendar/tailwind';
+import '@rendar/tailwind/dist/styles.css';
+
+function App() {
+  return (
+    <Button variant="primary">Click me</Button>
+  );
+}
+```
+
+## 🔄 마이그레이션 가이드 (사용자용)
+
+### Emotion 버전으로 마이그레이션
+
+```bash
+# 기존
+npm install rendar-design-system
+
+# 변경 후
+npm install @rendar/emotion
+```
+
+```typescript
+// 기존
+import { Button } from "rendar-design-system";
+
+// 변경 후
+import { Button } from "@rendar/emotion";
+```
+
+### Tailwind 버전 사용
+
+```bash
+npm install @rendar/tailwind tailwindcss
+```
+
+```typescript
+import { Button } from "@rendar/tailwind";
+import "@rendar/tailwind/dist/styles.css";
+```
+
+## 🚨 주의사항
+
+1. **Breaking Changes**: 패키지명이 변경되므로 메이저 버전 업데이트
+2. **의존성 관리**: workspace 프로토콜 사용 (`workspace:*`)
+3. **빌드 순서**: core → emotion/tailwind 순서로 빌드
+4. **타입 안정성**: 모든 공통 타입은 @rendar/core에서 관리
+5. **Peer Dependencies**: React 버전 호환성 명확히 명시
+
+## 📖 참고 자료
+
+- [pnpm Workspaces](https://pnpm.io/workspaces)
+- [Turborepo Documentation](https://turbo.build/repo/docs)
+- [Changesets](https://github.com/changesets/changesets)
+- [Tailwind Variants](https://www.tailwind-variants.org/)
+- [Emotion Documentation](https://emotion.sh/docs/introduction)
+
+---
+
+**작성일**: 2025-11-08  
+**버전**: 1.0.0  
+**작성자**: Rendar Design System Team

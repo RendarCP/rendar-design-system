@@ -1,87 +1,57 @@
 {
   "name": "rendar-design-system",
-  "description": "rendar 디자인 시스템",
+  "description": "rendar 디자인 시스템 - Monorepo",
   "homepage": "https://github.com/RendarCP/rendar-design-system",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RendarCP/rendar-design-system.git"
   },
-  "version": "0.0.8",
+  "version": "1.0.0",
+  "private": true,
   "type": "module",
-  "main": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./package.json": "./package.json",
-    "./dist/*": "./dist/*"
-  },
-  "files": [
-    "/dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
   "keywords": [
     "react",
     "typescript",
     "emotion",
+    "tailwind",
     "ui",
     "components",
     "storybook",
-    "vite"
+    "design-system",
+    "monorepo"
   ],
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "dependencies": {
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.0",
-    "@emotion/serialize": "^1.3.0",
-    "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.13.0",
-    "@emotion/utils": "^1.4.0",
-    "clsx": "^2.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rendar-design-system": "^0.0.2"
+    "build": "turbo run build",
+    "build:core": "turbo run build --filter=@rendar/core",
+    "build:emotion": "turbo run build --filter=@rendar/emotion",
+    "build:tailwind": "turbo run build --filter=@rendar/tailwind",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "storybook:emotion": "turbo run storybook --filter=@rendar/emotion",
+    "storybook:tailwind": "turbo run storybook --filter=@rendar/tailwind",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "turbo run build && changeset publish"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.6.1",
-    "@storybook/addon-essentials": "^8.2.8",
-    "@storybook/addon-interactions": "^8.2.8",
-    "@storybook/addon-links": "^8.2.8",
-    "@storybook/addon-onboarding": "^8.2.8",
-    "@storybook/blocks": "^8.2.8",
-    "@storybook/react": "^8.2.8",
-    "@storybook/react-vite": "^8.2.8",
-    "@storybook/test": "^8.2.8",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "chromatic": "^11.18.1",
-    "eslint": "^8.53.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
-    "eslint-plugin-storybook": "^0.8.0",
-    "storybook": "^8.2.8",
-    "storybook-dark-mode": "^4.0.2",
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.10.0",
+    "turbo": "^1.11.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.0",
-    "vite-plugin-dts": "^3.9.1",
-    "vite-tsconfig-paths": "^4.3.2"
+    "prettier": "^3.1.0",
+    "eslint": "^8.53.0"
   },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
   "contributors": [
     {
       "name": "Seong Wook Cho",
